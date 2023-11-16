@@ -1,10 +1,21 @@
 import Head from "next/head";
 import Link from "next/link";
+import React, { useState } from "react";
 
 import { api } from "~/utils/api";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const getServeurs = api.serveurs.get.useMutation();
+  const [vals, setVals] = useState("")
+
+  const caca = api.serveurs.getQuery.useQuery()
+
+  async function handleTest() {
+    const test = await getServeurs.mutateAsync();
+
+    setVals(`<p>${test.adpe}</p><p>${test.gwp}</p><p>${test.pe}</p>`);
+  }
 
   return (
     <>
@@ -45,6 +56,18 @@ export default function Home() {
           <p className="text-2xl text-white">
             {hello.data ? hello.data.greeting : "Loading tRPC query..."}
           </p>
+          <div className="w-[50vh]">{"42"}</div>
+          <button
+            className="bg-white px-3 py-1"
+            onClick={() => void handleTest()}
+            disabled={false}
+          >
+            Test
+          </button>
+          <div dangerouslySetInnerHTML={{__html: vals}}></div>
+          <div>
+            <p>{caca.data?.adpe}</p>
+          </div>
         </div>
       </main>
     </>

@@ -67,6 +67,8 @@ export default function Home() {
           <div dangerouslySetInnerHTML={{__html: vals}}></div>
           <div>
             <p>{caca.data?.adpe}</p>
+            <p>{caca.data?.gwp}</p>
+            <p>{caca.data?.pe}</p>
           </div>
         </div>
       </main>

@@ -1,6 +1,7 @@
-import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
-import { serveurRouter } from './routers/serverRoot';
+import { deviceRouter } from "./routers/devices";
+import { archetypeRouter } from "./routers/archetypes";
+import { countryRouter } from "./routers/country";
 
 /**
  * This is the primary router for your server.
@@ -8,8 +9,9 @@ import { serveurRouter } from './routers/serverRoot';
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
-  serveurs: serveurRouter
+  device: deviceRouter,
+  archetypes: archetypeRouter,
+  countries: countryRouter,
 });
 
 // export type definition of API

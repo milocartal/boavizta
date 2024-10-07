@@ -65,9 +65,9 @@ const Home: NextPage = () => {
   async function handlePost(e: React.SyntheticEvent) {
     e.preventDefault();
 
-    console.log(typeof avg_power)
-    console.log(typeof lifespan)
-    console.log(typeof avg_use_time)
+    console.log(typeof avg_power);
+    console.log(typeof lifespan);
+    console.log(typeof avg_use_time);
 
     const dataDevice = await deviceGetDataPost.mutateAsync({
       type: deviceType,
@@ -200,9 +200,7 @@ const Home: NextPage = () => {
                   type="number"
                   placeholder="4"
                   className="rounded-lg px-2 py-1"
-                  onChange={(e) =>
-                    setLifespan(e.target.value as unknown as number)
-                  }
+                  onChange={(e) => setLifespan(parseInt(e.target.value))}
                   defaultValue={lifespan}
                 />
               </span>
@@ -216,9 +214,7 @@ const Home: NextPage = () => {
                   step={0.1}
                   placeholder="8"
                   className="rounded-lg px-2 py-1"
-                  onChange={(e) =>
-                    setUseTime(e.target.value as unknown as number)
-                  }
+                  onChange={(e) => setUseTime(parseFloat(e.target.value))}
                   defaultValue={avg_use_time}
                 />
               </span>
@@ -229,9 +225,7 @@ const Home: NextPage = () => {
                   type="number"
                   placeholder="75"
                   className="rounded-lg px-2 py-1"
-                  onChange={(e) =>
-                    setPower(e.target.value as unknown as number)
-                  }
+                  onChange={(e) => setPower(parseFloat(e.target.value))}
                   defaultValue={avg_power}
                 />
               </span>
@@ -274,10 +268,14 @@ const Home: NextPage = () => {
         </aside>
       </section>
       {valTab.map((item, index) => {
+        console.log(item);
+
         return (
           <p key={index}>
             {item.adpe}
+            <br />
             {item.gwp}
+            <br />
             {item.pe}
           </p>
         );
